@@ -1,0 +1,248 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="HVAC Template">
+    <meta name="keywords" content="HVAC, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HVAC | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
+
+    {% block extra-style %}{% endblock %}
+
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__widget">
+            <!-- <a href="#"><i class="fa fa-cart-plus"></i></a> -->
+            <!-- <a href="#" class="search-switch"><i class="fa fa-search"></i></a> -->
+            <!-- <a href="#" class="primary-btn">Add Car</a> -->
+        </div>
+        <div class="offcanvas__logo">
+            <a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <ul class="offcanvas__widget__add">
+            <!-- <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 18:00 pm</li> -->
+            <!-- <li><i class="fa fa-envelope-o"></i> Info.colorlib@gmail.com</li> -->
+        </ul>
+        <!-- <div class="offcanvas__phone__num"> -->
+        <!-- <i class="fa fa-phone"></i> -->
+        <!-- <span>(+12) 345 678 910</span> -->
+        <!-- </div> -->
+        <div class="offcanvas__social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-google"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="header__logo">
+                        <a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="header__nav">
+                        <nav class="header__menu">
+                            <ul>
+                                <li><a href="{% url 'index' %}">Home</a></li>
+                                <li><a href="{% url 'product:list' %}">Product</a></li>
+                                <li><a href="{% url 'product:tagged_object_list' '휴대용' %}">휴대용</a></li>
+                                <li><a href="{% url 'product:tagged_object_list' '사무인강용' %}">사무용</a></li>
+                                <li><a href="{% url 'product:tagged_object_list' '게임용' %}">게임용</a></li>
+                                <li><a href="{% url 'product:tagged_object_list' '그래픽작업용' %}">그래픽작업용</a></li>
+                                <div class="btn-group">
+                                    <button type="button" class="btn primary-btn text-white"><a
+                                            href="{% url 'cart:cart_detail' %}"><i
+                                                class="fa fa-cart-plus"></i></a></button>
+                                    {% if user.is_active %}
+                                    <div class="btn-group">
+                                        <button type="button" class="btn primary-btn text-white dropdown-toggle"
+                                            data-toggle="dropdown"><i class="fa fa-user"></i> {{ user.username }}
+                                            <span class="caret"></span></button>
+                                        <div class="dropdown-menu" style="padding: 0;">
+                                            <a class="dropdown-item btn primary-btn text-white"
+                                                style="background: #db2d2e;" href="{% url 'logout' %}">Logout</a>
+                                            <a class="dropdown-item btn primary-btn text-white"
+                                                style="background: #db2d2e;" href="{% url 'password_change' %}">Change
+                                                Password</a>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <div class="btn-group">
+                                        <button type="button" class="btn primary-btn text-white dropdown-toggle"
+                                            data-toggle="dropdown"><i class="fa fa-user"></i> Anonymous
+                                            <span class="caret"></span></button>
+                                        <div class="dropdown-menu" style="padding: 0;">
+                                            <a class="dropdown-item btn primary-btn text-white"
+                                                style="background: #db2d2e;" href="{% url 'login' %}">Login</a>
+                                            <a class="dropdown-item btn primary-btn text-white"
+                                                style="background: #db2d2e;" href="{% url 'register' %}">Register</a>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                            </ul>
+                        </nav>
+                        <!-- <div class="header__nav__widget">
+                            <div class="header__nav__widget__btn">
+                                <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                <a href="#" class="search-switch"><i class="fa fa-search"></i></a>
+                            </div>
+                            <a href="#" class="primary-btn">Add Car</a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <span class="fa fa-bars"></span>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    {% block content %}{% endblock %}
+
+    <!-- Footer Section Begin -->
+    <footer class="footer set-bg" data-setbg="{% static 'img/notebook-02.png' %}">
+        <div class="container">
+            <div class="footer__contact">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer__contact__title">
+                            <h2 >Contact Us Now!</h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer__contact__option">
+                            <div class="option__item"><i class="fa fa-phone"></i> 010-1111-1111</div>
+                            <div class="option__item email"><i class="fa fa-email"></i> admin@gmail.com</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="{%static 'img/footer-bg.jpg' %}" alt=""></a>
+                        </div>
+                        <p style="color: white;">궁금한 사항이 있으시면 서울 강남구 삼성로 534 싹아트센터로 방문 혹은 010-1111-1111로 연락주시기 바랍니다.</p>
+                        <div class="footer__social">
+                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="google"><i class="fa fa-google"></i></a>
+                            <a href="#" class="skype"><i class="fa fa-skype"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3">
+                    <div class="footer__widget">
+                        <h5>Lapopt</h5>
+                        <ul>
+                            <li><a href="#" style="color: white;"><i class="fa fa-angle-right" style="color: white;"></i> 사무용</a></li>
+                            <li><a href="#" style="color: white;"><i class="fa fa-angle-right" style="color: white;"></i> 작업용</a></li>
+                            <li><a href="#" style="color: white;"><i class="fa fa-angle-right" style="color: white;"></i> 게이밍용</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-lg-2">
+                    <div class="footer__brand" >
+                        <h5>Top Brand</h5>
+                        <ul>
+                            <li><a href="#" style="color: white;"><i class="fa fa-angle-right"></i> LG</a></li>
+                            <li><a href="#" style="color: white;"><i class="fa fa-angle-right"></i> Samsung</a></li>
+                            <li><a href="#" style="color: white;"><i class="fa fa-angle-right"></i> APLLE</a></li>
+                            <li><a href="#" style="color: white;"><i class="fa fa-angle-right"></i> ASUS</a></li>
+                            <li><a href="#" style="color: white;"><i class="fa fa-angle-right"></i> MSI</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3">
+                    <div class="footer__widget">
+                        <h5>User</h5>
+                        <ul>
+                            <li><a href="#" style="color: white;"><i class="fas fa-angle-right"></i> Password Change</a></li>
+                            <li><a href="#" style="color: white;"><i class="fas fa-angle-right"></i> Cart</a></li>
+                            <li><a href="#" class="search-switch" style="color: white;"><i class="fas fa-angle-right" style="color: white;"></i> Search</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            <div class="footer__copyright__text">
+                <p>Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | Team no.2 by  <i class="fa fa-heart" aria-hidden="true"></i>  <a href="https://www.multicampus.com/main"
+                        target="_blank">multicampus</a>
+                </p>
+            </div>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/mixitup.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/fontawesome.min.js' %}"></script>
+
+</body>
+
+</html>
